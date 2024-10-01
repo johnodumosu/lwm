@@ -604,6 +604,7 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
+
 .about .container {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   padding-bottom: 15px;
@@ -625,10 +626,10 @@ section {
 .about .count-box span {
   font-size: 28px;
   line-height: 25px;
-  display: block;
+  display: inline;
   font-weight: 700;
   color: #365870;
-  margin-left: 60px;
+  margin-left: 10px;
 }
 
 .about .count-box p {
