@@ -1,5 +1,11 @@
 RewriteEngine On
+
+# Handle requests for "index" by redirecting to "index.html"
+RewriteRule ^index$ index.html [L]
+
+# Rewrite any request without an extension to .html if the file exists
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html [L]
 
+# Set the default directory index to index.html
 DirectoryIndex index.html
