@@ -1,4 +1,4 @@
-const API_KEY = rngtpDv_e0uWZbNmPCJZOw49871;
+const API_KEY = "rngtpDv_e0uWZbNmPCJZOw49871";
 
 document.getElementById("findAddress").addEventListener("click", function () {
   const postcode = document.getElementById("postcode").value.trim();
