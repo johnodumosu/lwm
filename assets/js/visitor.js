@@ -14,7 +14,10 @@ document.getElementById("findAddress").addEventListener("click", function () {
   addressInput.value = "";
 
   fetch(`https://api.getaddress.io/find/${encodeURIComponent(postcode)}?api-key=${API_KEY}`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error("API error");
+      return res.json();
+    })
     .then(data => {
 
       if (!data.addresses || data.addresses.length === 0) {
@@ -35,7 +38,7 @@ document.getElementById("findAddress").addEventListener("click", function () {
     .catch(err => {
       console.error(err);
       addressList.innerHTML = "<option>Error finding address</option>";
-      alert("Postcode lookup failed");
+      alert("Postcode lookup failed. Please try again.");
     });
 });
 
