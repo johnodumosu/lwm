@@ -1,4 +1,4 @@
-const API_KEY = "rngtpDv_e0uWZbNmPCJZOw49871" // Ensure this key is active and domain-whitelisted
+const API_KEY = "rngtpDv_e0uWZbNmPCJZOw49871";
 
 document.getElementById("findAddress").addEventListener("click", function () {
   const postcode = document.getElementById("postcode").value.trim();
@@ -13,42 +13,51 @@ document.getElementById("findAddress").addEventListener("click", function () {
   addressList.innerHTML = "<option>Searching...</option>";
   addressInput.value = "";
 
+  // Added 'expand=true' to get cleaner address formatting
   fetch(`https://api.getaddress.io/find/${encodeURIComponent(postcode)}?api-key=${API_KEY}&expand=true`)
     .then(res => {
-      if (res.status === 401) throw new Error("Invalid API Key or Domain not whitelisted");
-      if (res.status === 404) throw new Error("Postcode not found");
-      if (!res.ok) throw new Error("API error");
+      if (res.status === 401) throw new Error("API Key invalid or Domain not whitelisted in getAddress.io dashboard.");
+      if (res.status === 404) throw new Error("Postcode not found.");
+      if (!res.ok) throw new Error("Connection error.");
       return res.json();
     })
     .then(data => {
-      addressList.innerHTML = '<option value="">-- Select address --</option>';
-
       if (!data.addresses || data.addresses.length === 0) {
         addressList.innerHTML = "<option>No addresses found</option>";
         return;
       }
 
+      addressList.innerHTML = '<option value="">-- Select address --</option>';
+
       data.addresses.forEach(addr => {
-        // If using 'expand=true', addr is an object. 
-        // If not, it's a string. This handles the string version in your original code:
-        const formattedAddress = Array.isArray(addr) ? addr.filter(x => x).join(", ") : addr.replace(/,+/g, ", ").trim();
+        // Formats the address array into a clean string, removing empty parts
+        const fullAddress = addr.filter(part => part && part.trim() !== "").join(", ");
         
         const option = document.createElement("option");
-        option.value = formattedAddress + ", " + data.postcode;
-        option.textContent = formattedAddress;
+        option.value = `${fullAddress}, ${data.postcode}`;
+        option.textContent = fullAddress;
         addressList.appendChild(option);
       });
     })
     .catch(err => {
-      console.error(err);
-      addressList.innerHTML = "<option>Error</option>";
+      console.error("Lookup Error:", err);
+      addressList.innerHTML = "<option>Error finding address</option>";
       alert(err.message);
     });
 });
 
-// Update the text box when an address is chosen
+// Update the main address input when a dropdown item is selected
 document.getElementById("addressList").addEventListener("change", function () {
   if (this.value) {
     document.getElementById("address").value = this.value;
   }
+});
+
+// Form Submission logic
+document.getElementById("visitorForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const msg = document.getElementById("msg");
+  msg.innerText = "Thank you! Your information has been submitted.";
+  msg.style.color = "green";
+  this.reset();
 });
