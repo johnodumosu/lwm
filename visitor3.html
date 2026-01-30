@@ -157,6 +157,15 @@
     <div class="sent-message">Your message has been sent. Thank you!</div>
   </div>
 
+  <div class="form-group mt-3">
+  <label>
+    <input type="checkbox" name="gdpr" required>
+    I consent to Living Word Ministry storing my data for contact purposes in line with the Privacy Policy.
+  </label>
+</div>
+
+  
+
   <div class="text-center">
     <button type="submit">Send Message</button>
   </div>
@@ -296,6 +305,18 @@ document.getElementById("addressList").addEventListener("change", function () {
   document.getElementById("address").value = this.value;
 });
 </script>
+
+
+  <script>
+document.querySelectorAll('input[name="contact"]').forEach(radio => {
+  radio.addEventListener('change', function () {
+    document.querySelectorAll('input[name="means[]"]').forEach(cb => {
+      cb.disabled = this.value === "No";
+    });
+  });
+});
+</script>
+
 
   
 
