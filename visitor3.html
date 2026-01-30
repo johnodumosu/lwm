@@ -81,100 +81,89 @@
       <div class="row">
 
         <div class="col-lg-6 mt-4 mt-lg-0">
+
           <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Full Name" required>
-              </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-              </div>
-            </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-            </div>
 
-            <!-- Postcode Lookup -->
-    <div class="form-group mt-3">
-        <input type="text" class="form-control" id="postcode" placeholder="Post Code e.g. HU5 2AB">
-        <button type="submit" id="findAddress">Find Address</button>
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <input type="text" name="name" class="form-control" id="name" placeholder="Your Full Name" required>
     </div>
 
-            
-<div class="form-group mt-3">
-  <select id="addressList">
-    <option value="">-- Select address --</option>
-  </select>
-</div>
-
-<div class="form-group mt-3">
-  <input type="text" class="form-control" id="address" name="address" placeholder="Subject" required>
-</div>
-
-    <div class="form-group mt-3">
-      <input type="tel" class="form-control name="phone" placeholder="Phone Number" required>
+    <div class="col-md-6 form-group mt-3 mt-md-0">
+      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
     </div>
+  </div>
 
-    <div class="form-group mt-3">
-        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+  <div class="form-group mt-3">
+    <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+  </div>
+
+  <!-- Postcode Lookup -->
+  <div class="form-group mt-3">
+    <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Post Code e.g. HU5 2AB">
+    <button type="button" id="findAddress" class="btn btn-secondary mt-2">Find Address</button>
+  </div>
+
+  <div class="form-group mt-3">
+    <select id="addressList" name="addressList" class="form-control">
+      <option value="">-- Select address --</option>
+    </select>
+  </div>
+
+  <div class="form-group mt-3">
+    <input type="text" class="form-control" id="address" name="address" placeholder="Full Address" required>
+  </div>
+
+  <div class="form-group mt-3">
+    <label>Do you wish to be contacted?</label>
+    <div>
+      <label><input type="radio" name="contact" value="Yes"> Yes</label>
+      <label><input type="radio" name="contact" value="No"> No</label>
     </div>
+  </div>
 
-
-<div class="form-group mt-3">
-      <label>Do you wish to be contacted?</label>
-      <div class="inline">
-        <label><input type="radio" name="contact" value="Yes"> Yes</label>
-        <label><input type="radio" name="contact" value="No"> No</label>
-      </div>
+  <div class="form-group mt-3">
+    <label>If yes, by what means?</label>
+    <div>
+      <label><input type="checkbox" name="means[]" value="Phone"> Phone</label>
+      <label><input type="checkbox" name="means[]" value="Email"> Email</label>
+      <label><input type="checkbox" name="means[]" value="Personal Visit"> Personal Visit</label>
     </div>
+  </div>
 
-    <div class="form-group mt-3">
-      <label>If yes, by what means?</label>
-      <div class="inline">
-        <label><input type="checkbox" name="means" value="Phone"> By Phone</label>
-        <label><input type="checkbox" name="means" value="Email"> By Email</label>
-        <label><input type="checkbox" name="means" value="Personal Visit"> By Personal Visit</label>
-      </div>
+  <div class="form-group mt-3">
+    <label>Interested in becoming a member?</label>
+    <div>
+      <label><input type="radio" name="member" value="Yes"> Yes</label>
+      <label><input type="radio" name="member" value="No"> No</label>
     </div>
+  </div>
 
-    <div class="form-group mt-3">
-      <label>Interested in becoming a member?</label>
-      <div class="inline">
-        <label><input type="radio" name="member" value="Yes"> Yes</label>
-        <label><input type="radio" name="member" value="No"> No</label>
-      </div>
+  <div class="form-group mt-3">
+    <label>Visiting, but may be interested?</label>
+    <div>
+      <label><input type="radio" name="visiting" value="Yes"> Yes</label>
+      <label><input type="radio" name="visiting" value="No"> No</label>
     </div>
+  </div>
 
-    <div class="form-group mt-3">
-      <label>Visiting, but may be interested</label>
-      <div class="inline">
-        <label><input type="radio" name="visiting" value="Yes"> Yes</label>
-        <label><input type="radio" name="visiting" value="No"> No</label>
-      </div>
-    </div>
+  <div class="form-group mt-3">
+    <textarea class="form-control" name="message" rows="5" placeholder="Comments" required></textarea>
+  </div>
 
+  <div class="my-3">
+    <div class="loading">Loading</div>
+    <div class="error-message"></div>
+    <div class="sent-message">Your message has been sent. Thank you!</div>
+  </div>
 
+  <div class="text-center">
+    <button type="submit">Send Message</button>
+  </div>
 
+</form>
 
-
-
-
-
-            
-
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Comment" required></textarea>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
+          
         </div>
 
       </div>
