@@ -1464,6 +1464,8 @@ section {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+/* remove this when cleaning up the code to 1496 */
+
 /* Aligns the postcode input and button on the same line */
 .postcode-row {
   display: flex;
