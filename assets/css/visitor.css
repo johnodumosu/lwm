@@ -1464,6 +1464,40 @@ section {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+/* Aligns the postcode input and button on the same line */
+.postcode-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.postcode-row input {
+  flex-grow: 1;
+}
+
+#visitorForm .row {
+  margin-bottom: 1rem;
+}
+
+#visitorForm label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Ensure the dropdown is visible and styled like other inputs */
+#addressList {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+
+
+
+
+
 .contact .info-box {
   color: #444444;
   text-align: center;
