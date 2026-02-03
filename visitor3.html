@@ -14,7 +14,9 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -29,9 +31,10 @@
   <link href="assets/css/visitor.css" rel="stylesheet">
 
   <script src="https://cdn.getaddress.io/scripts/getaddress-find-2.1.0.min.js"></script>
+  
 
 
- 
+
 </head>
 
 <body>
@@ -70,125 +73,117 @@
   <main id="main" style=" padding-top: 100px;">
 
 
-<div class="container">
+    <div class="container">
 
-<!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
+      <!-- ======= Contact Section ======= -->
+      <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
 
-    <div class=" section-title">
-        <h2>Visitor</h2>
-        <p>Visitor Information Form</p>
-      </div>
+          <div class=" section-title">
+            <h2>Visitor</h2>
+            <p>Visitor Information Form</p>
+          </div>
 
-<div class="row justify-content-center"> <!-- Added centering class here -->
-  <div class="col-lg-6 mt-4 mt-lg-0">
+          <div class="row justify-content-center"> <!-- Added centering class here -->
+            <div class="col-lg-6 mt-4 mt-lg-0">
 
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
 
-  <div class="row">
-    <div class="form-group mt-3">
-      <input type="text" name="name" class="form-control" id="name" placeholder="Your Full Name" required>
-    </div>
+                <div class="row">
+                  <div class="form-group mt-3">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Full Name" required>
+                  </div>
 
-    <div class="form-group mt-3">
-      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-    </div>
-  </div>
+                  <div class="form-group mt-3">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  </div>
+                </div>
 
-  <div class="form-group mt-3">
-    <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
-  </div>
+                <div class="form-group mt-3">
+                  <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+                </div>
 
-  <!-- Postcode Lookup -->
-  <div class="input-group mt-3"> 
-    <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Post Code HU5 2AB">
-        <button type="button" id="findAddress" class="btn btn-secondary">Find Address</button>
-      </div>
-            
+                <!-- Postcode Lookup -->
+                <div id="container"></div>
+ 
+
+                <div class="form-group mt-3">
+                  <input type="text" class="form-control" id="address" name="address" placeholder="Full Address"
+                    required>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label>Do you wish to be contacted?</label>
+                  <div>
+                    <label><input type="radio" name="contact" value="Yes"> Yes</label>
+                    <label><input type="radio" name="contact" value="No"> No</label>
+                  </div>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label>If yes, by what means?</label>
+                  <div>
+                    <label><input type="checkbox" name="means[]" value="Phone"> Phone</label>
+                    <label><input type="checkbox" name="means[]" value="Email"> Email</label>
+                    <label><input type="checkbox" name="means[]" value="Personal Visit"> Personal Visit</label>
+                  </div>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label>Interested in becoming a member?</label>
+                  <div>
+                    <label><input type="radio" name="member" value="Yes"> Yes</label>
+                    <label><input type="radio" name="member" value="No"> No</label>
+                  </div>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label>Visiting, but may be interested?</label>
+                  <div>
+                    <label><input type="radio" name="visiting" value="Yes"> Yes</label>
+                    <label><input type="radio" name="visiting" value="No"> No</label>
+                  </div>
+                </div>
+
+                <div class="form-group mt-3">
+                  <textarea class="form-control" name="message" rows="5" placeholder="Comments" required></textarea>
+                </div>
+
+                <div class="my-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+
+                <div class="form-group mt-3">
+                  <label>
+                    <input type="checkbox" name="gdpr" required>
+                    I consent to Living Word Ministry storing my data for contact purposes in line with the Privacy
+                    Policy.
+                  </label>
+                </div>
 
 
-  <div class="form-group mt-3">
-    <select id="addressList" name="addressList" class="form-control">
-      <option value="">-- Select address --</option>
-    </select>
-  </div>
 
-  <div class="form-group mt-3">
-    <input type="text" class="form-control" id="address" name="address" placeholder="Full Address" required>
-  </div>
+                <div class="text-center">
+                  <button type="submit">Send Message</button>
+                </div>
 
-  <div class="form-group mt-3">
-    <label>Do you wish to be contacted?</label>
-    <div>
-      <label><input type="radio" name="contact" value="Yes"> Yes</label>
-      <label><input type="radio" name="contact" value="No"> No</label>
-    </div>
-  </div>
+              </form>
 
-  <div class="form-group mt-3">
-    <label>If yes, by what means?</label>
-    <div>
-      <label><input type="checkbox" name="means[]" value="Phone"> Phone</label>
-      <label><input type="checkbox" name="means[]" value="Email"> Email</label>
-      <label><input type="checkbox" name="means[]" value="Personal Visit"> Personal Visit</label>
-    </div>
-  </div>
 
-  <div class="form-group mt-3">
-    <label>Interested in becoming a member?</label>
-    <div>
-      <label><input type="radio" name="member" value="Yes"> Yes</label>
-      <label><input type="radio" name="member" value="No"> No</label>
-    </div>
-  </div>
+            </div>
 
-  <div class="form-group mt-3">
-    <label>Visiting, but may be interested?</label>
-    <div>
-      <label><input type="radio" name="visiting" value="Yes"> Yes</label>
-      <label><input type="radio" name="visiting" value="No"> No</label>
-    </div>
-  </div>
+          </div>
 
-  <div class="form-group mt-3">
-    <textarea class="form-control" name="message" rows="5" placeholder="Comments" required></textarea>
-  </div>
-
-  <div class="my-3">
-    <div class="loading">Loading</div>
-    <div class="error-message"></div>
-    <div class="sent-message">Your message has been sent. Thank you!</div>
-  </div>
-
-  <div class="form-group mt-3">
-  <label>
-    <input type="checkbox" name="gdpr" required>
-    I consent to Living Word Ministry storing my data for contact purposes in line with the Privacy Policy.
-  </label>
-</div>
-
-  
-
-  <div class="text-center">
-    <button type="submit">Send Message</button>
-  </div>
-
-</form>
-
-          
         </div>
-
-      </div>
-
-      </div>
-    </section><!-- End Contact Section -->
+      </section><!-- End Contact Section -->
 
 
 
 
 
-    
+
 
   </main><!-- End #main -->
 
@@ -210,7 +205,8 @@
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="https://www.facebook.com/LivingWordHull" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.facebook.com/LivingWordHull" class="facebook" target="_blank"><i
+                    class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                 <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
@@ -236,7 +232,8 @@
               <li><i class="bx bx-chevron-right"></i> <a href="ministries/women">Women & Children</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="ministries/youth">Youth & Young Adult</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="ministries/prayer">Prayer</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="ministries/outreach_visitation">Outreach & Visitation</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="ministries/outreach_visitation">Outreach & Visitation</a>
+              </li>
             </ul>
           </div>
 
@@ -264,7 +261,8 @@
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -278,51 +276,10 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script>
-document.getElementById("findAddress").addEventListener("click", function () {
-  const postcode = document.getElementById("postcode").value.trim();
-  const addressList = document.getElementById("addressList");
-
-  if (!postcode) {
-    alert("Please enter a postcode");
-    return;
-  }
-
-  fetch(`https://api.getaddress.io/find/${postcode}?api-key=rngtpDv_e0uWZbNmPCJZOw49871`)
-    .then(response => response.json())
-    .then(data => {
-      addressList.innerHTML = '<option value="">-- Select address --</option>';
-
-      data.addresses.forEach(addr => {
-        const option = document.createElement("option");
-        option.value = addr;
-        option.textContent = addr;
-        addressList.appendChild(option);
-      });
-    })
-    .catch(() => {
-      alert("Address lookup failed. Please enter manually.");
-    });
-});
-
-document.getElementById("addressList").addEventListener("change", function () {
-  document.getElementById("address").value = this.value;
-});
-</script>
+  <script src="assets/js/visitor.js"></script>
 
 
-  <script>
-document.querySelectorAll('input[name="contact"]').forEach(radio => {
-  radio.addEventListener('change', function () {
-    document.querySelectorAll('input[name="means[]"]').forEach(cb => {
-      cb.disabled = this.value === "No";
-    });
-  });
-});
-</script>
 
-
-  
 
 </body>
 
