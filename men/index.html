@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Living Word Ministry – Men's Ministry Membership</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:     #C9A84C;
+      --gold-lt:  #E8C97A;
+      --gold-dk:  #8B6914;
+      --navy:     #0B1D35;
+      --navy-lt:  #142647;
+      --navy-mid: #1E3460;
+      --cream:    #F8F4ED;
+      --warm:     #EDE5D8;
+      --white:    #FFFFFF;
+      --muted:    #7A8FA8;
+      --error:    #C94C4C;
+      --success:  #3A9E6F;
+      --text:     #1A2840;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 80px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(201,168,76,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(201,168,76,0.04) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      width: 100%;
+      background: linear-gradient(180deg, #06111F 0%, var(--navy) 100%);
+      border-bottom: 1px solid rgba(201,168,76,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 20px 36px;
+      position: relative;
+      z-index: 1;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* Globe SVG logo */
+    .logo-wrap {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 0 6px rgba(201,168,76,0.1), 0 0 40px rgba(201,168,76,0.25);
+      background: radial-gradient(circle at 35% 35%, #1a4a8a, #071525);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px;
+      animation: halo 4s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    @keyframes halo {
+      0%,100% { box-shadow: 0 0 0 6px rgba(201,168,76,0.1), 0 0 40px rgba(201,168,76,0.25); }
+      50%      { box-shadow: 0 0 0 10px rgba(201,168,76,0.08), 0 0 60px rgba(201,168,76,0.4); }
+    }
+    .logo-wrap svg { width: 64px; height: 64px; }
+
+    .ministry-name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 4vw, 2.1rem);
+      font-weight: 700;
+      color: var(--gold-lt);
+      letter-spacing: 0.15em;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .ministry-sub {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+      color: var(--muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .divider-ornament {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .divider-ornament span { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dk)); }
+    .divider-ornament span:last-child { background: linear-gradient(270deg, transparent, var(--gold-dk)); }
+    .divider-ornament .diamond {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--cream);
+      width: min(800px, 94vw);
+      margin-top: 48px;
+      border-radius: 2px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.25);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      animation: rise 0.8s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    @keyframes rise {
+      from { opacity:0; transform:translateY(50px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .card-top {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 28px 40px;
+      border-bottom: 2px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-top::before {
+      content: '';
+      position: absolute;
+      right: -30px; top: -30px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.12);
+    }
+    .card-top::after {
+      content: '';
+      position: absolute;
+      right: -10px; top: -10px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.08);
+    }
+    .card-top h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--gold-lt);
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .card-top p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 5px;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── FORM BODY ── */
+    form {
+      padding: 40px 40px 32px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 28px 0 20px;
+    }
+    .section-head:first-of-type { margin-top: 0; }
+    .section-head .sh-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--navy-mid);
+      white-space: nowrap;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .section-head::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold) 0%, rgba(201,168,76,0.1) 100%);
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; }
+    .grid-1 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .col-span { grid-column: 1 / -1; }
+
+    .field { display: flex; flex-direction: column; gap: 7px; }
+
+    label {
+      font-size: 0.71rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    label .req { color: var(--gold-dk); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1.5px solid #C5BAA8;
+      border-radius: 2px;
+      background: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B6914' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+      background: #FFFDF7;
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+    input.invalid, select.invalid, textarea.invalid {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(201,76,76,0.1);
+    }
+    textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
+
+    .hint {
+      font-size: 0.7rem;
+      color: #9A8C78;
+      font-style: italic;
+    }
+    .err {
+      font-size: 0.7rem;
+      color: var(--error);
+      display: none;
+    }
+    .err.show { display: block; }
+
+    /* ── SIGNATURE SECTION ── */
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 20px 28px;
+      margin-top: 8px;
+    }
+    .sig-grid .field label { font-size: 0.71rem; }
+    .sig-underline {
+      border: none !important;
+      border-bottom: 1.5px solid #AAA098 !important;
+      border-radius: 0 !important;
+      padding: 10px 4px !important;
+      background: transparent !important;
+      font-family: 'Crimson Pro', serif !important;
+      font-size: 1rem !important;
+    }
+    .sig-underline:focus {
+      border-bottom-color: var(--gold) !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+    .approval-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 28px;
+      margin-top: 8px;
+    }
+
+    /* ── SUBMIT ── */
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #DDD4C4;
+    }
+    .btn-reset {
+      padding: 12px 28px;
+      background: transparent;
+      border: 1.5px solid #C5BAA8;
+      border-radius: 2px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-reset:hover { border-color: var(--muted); color: var(--text); }
+
+    .btn-submit {
+      padding: 13px 36px;
+      background: linear-gradient(135deg, var(--gold-dk) 0%, var(--gold) 50%, var(--gold-lt) 100%);
+      border: none;
+      border-radius: 2px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(201,168,76,0.35);
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0);
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { box-shadow: 0 6px 28px rgba(201,168,76,0.55); transform: translateY(-1px); }
+    .btn-submit:hover::before { background: rgba(255,255,255,0.1); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .spinner {
+      display: none;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(11,29,53,0.3);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn-submit.loading .spinner { display: inline-block; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 30px; right: 30px;
+      padding: 16px 24px;
+      border-radius: 3px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: white;
+      z-index: 9999;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+      max-width: 340px;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { background: var(--success); }
+    .toast.error   { background: var(--error); }
+
+    /* ── SUCCESS OVERLAY ── */
+    .success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6,17,31,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-overlay.show { display: flex; }
+    .success-box {
+      background: var(--cream);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-top: 3px solid var(--gold);
+      padding: 56px 48px;
+      border-radius: 3px;
+      text-align: center;
+      max-width: 440px;
+      width: 90vw;
+      animation: popIn 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    @keyframes popIn { from { opacity:0; transform:scale(0.88); } to { opacity:1; transform:scale(1); } }
+    .success-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2d7a56, #3A9E6F);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 22px;
+      box-shadow: 0 4px 20px rgba(58,158,111,0.4);
+    }
+    .success-icon svg { width: 30px; height: 30px; }
+    .success-box h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .success-box p {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.05rem;
+      color: #5A6A7E;
+      line-height: 1.7;
+    }
+    .btn-new {
+      margin-top: 28px;
+      padding: 12px 32px;
+      background: var(--navy);
+      color: var(--gold-lt);
+      border: none;
+      border-radius: 2px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-new:hover { background: var(--navy-mid); }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 36px;
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(122,143,168,0.6);
+      text-align: center;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 600px) {
+      form { padding: 28px 24px 24px; }
+      .card-top { padding: 22px 24px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .sig-grid { grid-template-columns: 1fr; }
+      .approval-grid { grid-template-columns: 1fr; }
+      .submit-row { flex-direction: column-reverse; }
+      .btn-reset, .btn-submit { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap">
+    <!-- Globe + Open Bible SVG -->
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <!-- Globe -->
+      <circle cx="32" cy="34" r="22" fill="#1a4a8a" opacity="0.9"/>
+      <ellipse cx="32" cy="34" rx="12" ry="22" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+      <line x1="10" y1="34" x2="54" y2="34" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+      <line x1="14" y1="24" x2="50" y2="24" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+      <line x1="14" y1="44" x2="50" y2="44" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+      <circle cx="32" cy="34" r="22" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+      <!-- Glow from book -->
+      <ellipse cx="32" cy="20" rx="14" ry="8" fill="rgba(255,240,180,0.18)"/>
+      <!-- Open Bible -->
+      <path d="M18 16 Q32 12 32 20 Q32 12 46 16 L46 26 Q32 22 32 30 Q32 22 18 26 Z" fill="#E8C97A" opacity="0.95"/>
+      <line x1="32" y1="13" x2="32" y2="29" stroke="rgba(100,70,0,0.4)" stroke-width="0.7"/>
+      <!-- Light rays -->
+      <line x1="32" y1="8" x2="32" y2="2" stroke="#E8C97A" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+      <line x1="38" y1="9" x2="41" y2="4" stroke="#E8C97A" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <line x1="26" y1="9" x2="23" y2="4" stroke="#E8C97A" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <div class="ministry-name">Living Word Ministry</div>
+  <div class="ministry-sub">Men's Ministry Membership Form</div>
+
+  <div class="divider-ornament">
+    <span></span>
+    <div class="diamond"></div>
+    <span></span>
+  </div>
+</header>
+
+<!-- CARD -->
+<div class="card">
+  <div class="card-top">
+    <h3>Member Registration</h3>
+    <p>Please complete all required fields accurately. Fields marked <span style="color:var(--gold-lt)">✦</span> are required.</p>
+  </div>
+
+  <form id="memberForm" novalidate>
+
+    <!-- PERSONAL INFORMATION -->
+    <div class="section-head"><span class="sh-label">Personal Information</span></div>
+
+    <div class="grid-2">
+      <div class="field col-span">
+        <label>Full Name <span class="req">✦</span></label>
+        <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" autocomplete="name"/>
+        <span class="err" id="err_full_name">Please enter your full name.</span>
+      </div>
+
+      <div class="field">
+        <label>Date of Birth <span class="req">✦</span></label>
+        <input type="text" id="dob" name="dob" placeholder="DD / MM  (day & month only)"/>
+        <span class="hint">Day and month only (e.g. 15 / 03)</span>
+        <span class="err" id="err_dob">Please enter a valid date (DD/MM).</span>
+      </div>
+
+      <div class="field">
+        <label>Marital Status <span class="req">✦</span></label>
+        <select id="marital_status" name="marital_status">
+          <option value="">— Select —</option>
+          <option>Single</option>
+          <option>Married</option>
+          <option>Widowed</option>
+          <option>Divorced</option>
+          <option>Separated</option>
+        </select>
+        <span class="err" id="err_marital_status">Please select your marital status.</span>
+      </div>
+    </div>
+
+    <!-- CONTACT DETAILS -->
+    <div class="section-head"><span class="sh-label">Contact Details</span></div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Phone Number <span class="req">✦</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="+27 00 000 0000" autocomplete="tel"/>
+        <span class="err" id="err_phone">Please enter a valid phone number.</span>
+      </div>
+
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="email" name="email" placeholder="yourname@example.com" autocomplete="email"/>
+        <span class="err" id="err_email">Please enter a valid email address.</span>
+      </div>
+
+      <div class="field col-span">
+        <label>Residential Address <span class="req">✦</span></label>
+        <textarea id="address" name="address" placeholder="Street, City, Postal Code"></textarea>
+        <span class="err" id="err_address">Please enter your residential address.</span>
+      </div>
+    </div>
+
+    <!-- MINISTRY DETAILS -->
+    <div class="section-head"><span class="sh-label">Ministry Details</span></div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Occupation</label>
+        <input type="text" id="occupation" name="occupation" placeholder="Your profession or trade"/>
+      </div>
+
+      <div class="field">
+        <label>Church Department</label>
+        <input type="text" id="department" name="department" placeholder="e.g. Choir, Ushers (if any)"/>
+      </div>
+
+      <div class="field">
+        <label>Date Joined <span class="req">✦</span></label>
+        <input type="date" id="date_joined" name="date_joined"/>
+        <span class="err" id="err_date_joined">Please enter the date joined.</span>
+      </div>
+    </div>
+
+    <!-- EMERGENCY CONTACT -->
+    <div class="section-head"><span class="sh-label">Emergency Contact</span></div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Emergency Contact Name <span class="req">✦</span></label>
+        <input type="text" id="emergency_name" name="emergency_name" placeholder="Contact person's full name"/>
+        <span class="err" id="err_emergency_name">Please enter an emergency contact name.</span>
+      </div>
+
+      <div class="field">
+        <label>Emergency Contact Number <span class="req">✦</span></label>
+        <input type="tel" id="emergency_number" name="emergency_number" placeholder="+27 00 000 0000"/>
+        <span class="err" id="err_emergency_number">Please enter an emergency contact number.</span>
+      </div>
+    </div>
+
+    <!-- SIGNATURES -->
+    <div class="section-head"><span class="sh-label">Declaration &amp; Signatures</span></div>
+
+    <p style="font-family:'Crimson Pro',serif; font-size:0.95rem; color:#5A6A7E; line-height:1.7; margin-bottom:20px;">
+      I, the undersigned, hereby confirm that the information provided above is true and accurate to the best of my knowledge,
+      and I commit to active participation in the Men's Ministry of Living Word Ministry.
+    </p>
+
+    <div class="sig-grid">
+      <div class="field">
+        <label>Member Signature <span class="req">✦</span></label>
+        <input type="text" id="member_signature" name="member_signature" class="sig-underline" placeholder="Type full name as signature"/>
+        <span class="err" id="err_member_signature">Please provide your signature.</span>
+      </div>
+      <div class="field">
+        <label>Date</label>
+        <input type="date" id="signature_date" name="signature_date" class="sig-underline"/>
+      </div>
+    </div>
+
+    <div class="approval-grid" style="margin-top:20px;">
+      <div class="field">
+        <label>Approved By</label>
+        <input type="text" id="approved_by" name="approved_by" class="sig-underline" placeholder="Approver's name"/>
+      </div>
+      <div class="field">
+        <label>Approver Signature</label>
+        <input type="text" id="approver_signature" name="approver_signature" class="sig-underline" placeholder="Approver's signature"/>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-row">
+      <button type="button" class="btn-reset" onclick="resetForm()">Clear Form</button>
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span class="spinner" id="spinner"></span>
+        <span id="btnText">Submit Application</span>
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<footer>© Living Word Ministry &nbsp;·&nbsp; Men's Ministry &nbsp;·&nbsp; All rights reserved</footer>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-box">
+    <div class="success-icon">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 15l7 7L24 8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h4>Application Submitted!</h4>
+    <p>Welcome to the Men's Ministry family.<br/>Your membership application has been received and will be reviewed shortly.</p>
+    <button class="btn-new" onclick="newForm()">Submit Another</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  const BACKEND_URL = 'http://localhost:5000/submit';   // ← change to your deployed URL
+
+  // Set today's date as default for signature date
+  document.getElementById('signature_date').value = new Date().toISOString().split('T')[0];
+
+  /* ── VALIDATION ── */
+  const rules = {
+    full_name:        v => v.trim().length >= 2,
+    dob:              v => /^\d{1,2}\s*[\/\-]\s*\d{1,2}$/.test(v.trim()),
+    marital_status:   v => v !== '',
+    phone:            v => /^[+\d\s\-]{7,}$/.test(v.trim()),
+    email:            v => v === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+    address:          v => v.trim().length >= 5,
+    date_joined:      v => v !== '',
+    emergency_name:   v => v.trim().length >= 2,
+    emergency_number: v => /^[+\d\s\-]{7,}$/.test(v.trim()),
+    member_signature: v => v.trim().length >= 2,
+  };
+
+  function validateField(id) {
+    const el = document.getElementById(id);
+    const err = document.getElementById('err_' + id);
+    if (!el || !rules[id]) return true;
+    const ok = rules[id](el.value);
+    el.classList.toggle('invalid', !ok);
+    if (err) err.classList.toggle('show', !ok);
+    return ok;
+  }
+
+  Object.keys(rules).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('blur', () => validateField(id));
+      el.addEventListener('input', () => {
+        if (el.classList.contains('invalid')) validateField(id);
+      });
+    }
+  });
+
+  /* ── FORM SUBMIT ── */
+  document.getElementById('memberForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Validate all
+    let valid = true;
+    Object.keys(rules).forEach(id => { if (!validateField(id)) valid = false; });
+    if (!valid) {
+      showToast('Please correct the highlighted fields.', 'error');
+      document.querySelector('.invalid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Collect data
+    const data = {};
+    ['full_name','dob','marital_status','phone','email','address',
+     'occupation','department','date_joined','emergency_name','emergency_number',
+     'member_signature','signature_date','approved_by','approver_signature']
+      .forEach(k => { data[k] = document.getElementById(k)?.value ?? ''; });
+
+    // Submit
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.classList.add('loading');
+    document.getElementById('btnText').textContent = 'Submitting…';
+
+    try {
+      const res = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (res.ok && json.success) {
+        document.getElementById('successOverlay').classList.add('show');
+      } else {
+        showToast(json.message || 'Submission failed. Please try again.', 'error');
+      }
+    } catch (err) {
+      showToast('Network error. Please check your connection and try again.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('loading');
+      document.getElementById('btnText').textContent = 'Submit Application';
+    }
+  });
+
+  function resetForm() {
+    document.getElementById('memberForm').reset();
+    document.getElementById('signature_date').value = new Date().toISOString().split('T')[0];
+    document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+    document.querySelectorAll('.err.show').forEach(el => el.classList.remove('show'));
+  }
+
+  function newForm() {
+    document.getElementById('successOverlay').classList.remove('show');
+    resetForm();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast ' + type;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4500);
+  }
+</script>
+</body>
+</html>
